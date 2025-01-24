@@ -13,19 +13,23 @@ public class Turn : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.A))
+        if (PauseMenu.IsPaused == false)
         {
-            Quaternion newRotation = Quaternion.Euler(0, 0, 0);
-            
-            transform.rotation = newRotation;
+            if (Input.GetKey(KeyCode.A))
+            {
+                Quaternion newRotation = Quaternion.Euler(0, 0, 0);
 
-        }
-        if (Input.GetKey(KeyCode.D))
-        {
-            Quaternion newRotation = Quaternion.Euler(0, 180, 0);
-            
-            transform.rotation = newRotation;
+                transform.rotation = newRotation;
 
+            }
+            if (Input.GetKey(KeyCode.D))
+            {
+                Quaternion newRotation = Quaternion.Euler(0, 180, 0);
+
+                transform.rotation = newRotation;
+
+            }
         }
+       
     }
 }
