@@ -4,29 +4,31 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
-    [SerializeField] private float Speed = 5f;
-    Vector2 move;
-    [SerializeField] private Rigidbody2D rb;
-    [SerializeField] private float Jumpforce;
-    private bool canSlide = true;
-    private bool isSliding;
-    private float SlidingPower = 24f;
-
-
-    private bool DoubleJump;
+    private float horizontal;
+    private float speed = 8f;
+    private float JumpForce = 375f;
+    private bool isFacingRight = true;
 
     private bool grounded;
-    private void Start()
-    {
-        rb = GetComponent<Rigidbody2D>();
-    }
+    private bool DoubleJump;
 
+    private bool canDash = true;
+    private bool isDashing;
+    private float dashingPower = 75f;
+    private float dashingTime = 0.2f;
+    private float dashingCooldown = 1f;
+
+    [SerializeField] private Rigidbody2D rb;
+    
+    [SerializeField] private LayerMask groundLayer;
 
     void Update()
     {
-        move = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxisRaw("Vertical"));
-
-
+        if (isDashing)
+        {
+            return;
+        }
+        horizontal = Input.GetAxisRaw("Horizontal");
 
         if (grounded && !Input.GetButton("Jump"))
         {
@@ -37,27 +39,28 @@ public class Movement : MonoBehaviour
         {
             if (grounded || DoubleJump)
             {
-                rb.AddForce(new Vector2(rb.velocity.x, Jumpforce));
+                rb.AddForce(new Vector2(rb.velocity.x, JumpForce));
 
                 DoubleJump = !DoubleJump;
             }
 
         }
-
-        if (Input.GetKey(KeyCode.LeftShift))
+        if (Input.GetKeyDown(KeyCode.LeftShift) && canDash)
         {
-            Quaternion newRotation = Quaternion.Euler(0, 0, 0);
-
-            transform.rotation = newRotation;
-
+            StartCoroutine(Dash());
         }
-
+        
+        Flip();
     }
 
     private void FixedUpdate()
     {
-        rb.velocity = new Vector2(move.x * Speed * Time.deltaTime, rb.velocity.y);
+        if (isDashing)
+        {
+            return;
+        }
 
+        rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
     }
 
     private void OnCollisionEnter2D(Collision2D other)
@@ -68,7 +71,6 @@ public class Movement : MonoBehaviour
 
         }
     }
-
     private void OnCollisionExit2D(Collision2D other)
     {
         if (other.gameObject.CompareTag("Ground"))
@@ -76,5 +78,32 @@ public class Movement : MonoBehaviour
             grounded = false;
 
         }
+    }
+
+    private void Flip()
+    {
+        if (isFacingRight && horizontal < 0f || !isFacingRight && horizontal > 0f)
+        {
+            isFacingRight = !isFacingRight;
+            Vector3 localScale = transform.localScale;
+            localScale.x *= -1f;
+            transform.localScale = localScale;
+        }
+    }
+
+    private IEnumerator Dash()
+    {
+        canDash = false;
+        isDashing = true;
+        float originalGravity = rb.gravityScale;
+        rb.gravityScale = 0f;
+        rb.velocity = new Vector2(transform.localScale.x * dashingPower, 0f);
+        
+        yield return new WaitForSeconds(dashingTime);
+        
+        rb.gravityScale = originalGravity;
+        isDashing = false;
+        yield return new WaitForSeconds(dashingCooldown);
+        canDash = true;
     }
 }

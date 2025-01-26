@@ -17,14 +17,14 @@ public class Turn : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.A))
             {
-                Quaternion newRotation = Quaternion.Euler(0, 0, 0);
+                Quaternion newRotation = Quaternion.Euler(0, 180, 0);
 
                 transform.rotation = newRotation;
 
             }
             if (Input.GetKey(KeyCode.D))
             {
-                Quaternion newRotation = Quaternion.Euler(0, 180, 0);
+                Quaternion newRotation = Quaternion.Euler(0, 0, 0);
 
                 transform.rotation = newRotation;
 
