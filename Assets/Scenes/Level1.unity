@@ -401,8 +401,9 @@ GameObject:
   - component: {fileID: 106583420}
   - component: {fileID: 106583419}
   - component: {fileID: 106583421}
+  - component: {fileID: 106583422}
   m_Layer: 0
-  m_Name: Char2
+  m_Name: Char3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -585,6 +586,20 @@ PolygonCollider2D:
       - {x: 0.39, y: -0.865}
       - {x: 0.42999998, y: -0.805}
   m_UseDelaunayMesh: 0
+--- !u!114 &106583422
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 106583418}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f1a3f44655070a49a9d7b09754ae4b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Firepoint: {fileID: 2115332024}
+  BulletPrefab: {fileID: 4451767965603006295, guid: 5bc4a0ecfd5481445b1395c137be61ec, type: 3}
 --- !u!1 &370680559
 GameObject:
   m_ObjectHideFlags: 0
@@ -863,8 +878,9 @@ GameObject:
   - component: {fileID: 569324880}
   - component: {fileID: 569324879}
   - component: {fileID: 569324881}
+  - component: {fileID: 569324882}
   m_Layer: 0
-  m_Name: Char3
+  m_Name: Char2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -995,6 +1011,20 @@ PolygonCollider2D:
       - {x: 0.14, y: -0.03}
       - {x: 0.13, y: 1.41}
   m_UseDelaunayMesh: 0
+--- !u!114 &569324882
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 569324878}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f1a3f44655070a49a9d7b09754ae4b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Firepoint: {fileID: 2115332024}
+  BulletPrefab: {fileID: 7604938916678576066, guid: a37d68adcde7ffe498b30b050260075b, type: 3}
 --- !u!1 &841643361
 GameObject:
   m_ObjectHideFlags: 0
@@ -1517,6 +1547,7 @@ GameObject:
   - component: {fileID: 1290902792}
   - component: {fileID: 1290902791}
   - component: {fileID: 1290902793}
+  - component: {fileID: 1290902794}
   m_Layer: 0
   m_Name: Char1
   m_TagString: Untagged
@@ -1677,6 +1708,20 @@ PolygonCollider2D:
       - {x: 0.48, y: -1.23}
       - {x: 0.53999996, y: -1.2099999}
   m_UseDelaunayMesh: 0
+--- !u!114 &1290902794
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1290902790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f1a3f44655070a49a9d7b09754ae4b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Firepoint: {fileID: 2115332024}
+  BulletPrefab: {fileID: 4816527396368500475, guid: 48fe8130ceb9a7c46a5c13a01663fa29, type: 3}
 --- !u!1 &1562015750
 GameObject:
   m_ObjectHideFlags: 0
@@ -1877,8 +1922,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Char1: {fileID: 1290902790}
-  Char2: {fileID: 106583418}
-  Char3: {fileID: 569324878}
+  Char2: {fileID: 569324878}
+  Char3: {fileID: 106583418}
 --- !u!114 &1782478028
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2327,6 +2372,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2115332024}
   - component: {fileID: 2115332025}
+  - component: {fileID: 2115332026}
   m_Layer: 0
   m_Name: Shoot
   m_TagString: Untagged
@@ -2343,7 +2389,7 @@ Transform:
   m_GameObject: {fileID: 2115332023}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.53, y: -0.39000002, z: 9.993608}
+  m_LocalPosition: {x: 1.2, y: -0.1, z: 9.993608}
   m_LocalScale: {x: 0.13923684, y: 0.13923684, z: 0.13923684}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2401,6 +2447,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &2115332026
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2115332023}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e24841e6751fb374482aac1e94ac9685, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -2409,7 +2467,7 @@ SceneRoots:
   - {fileID: 928789879}
   - {fileID: 841643364}
   - {fileID: 1782478022}
-  - {fileID: 1811783599}
   - {fileID: 1562015755}
   - {fileID: 1872108810}
   - {fileID: 2108062264}
+  - {fileID: 1811783599}
