@@ -12,6 +12,7 @@ public class Char3ATK : MonoBehaviour
     void Start()
     {
         rb.velocity = transform.right * speed;
+        rb.rotation = 45;
     }
 
     // Update is called once per frame

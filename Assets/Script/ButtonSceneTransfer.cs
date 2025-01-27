@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class ButtonSceneTransfer : MonoBehaviour
+public class ButtonSceneTransfer : MonoBehaviour //สำหรับกด play, option, quit
 {
     public int StartG;
     public int AboutG;

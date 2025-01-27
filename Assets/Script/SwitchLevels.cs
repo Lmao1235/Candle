@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class SwitchLevels : MonoBehaviour
+public class SwitchLevels : MonoBehaviour //สำหรับกดเข้า Level
 {
     public int Level1;
     public int Level2;

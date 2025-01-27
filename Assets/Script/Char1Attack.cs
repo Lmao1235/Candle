@@ -5,10 +5,13 @@ using UnityEngine;
 public class Char1Attack : MonoBehaviour
 {
     public float speed = 20f;
+    public float angle = 45f;
     public Rigidbody2D rb;
     void Start()
     {
+        
         rb.velocity = transform.right * speed;
+        transform.rotation = Quaternion.Euler( angle, 0 ,0);
     }
 
     // Update is called once per frame
@@ -17,7 +20,7 @@ public class Char1Attack : MonoBehaviour
         
     }
 
-    private void OnCollisionEnter2D(Collision2D other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
         Destroy(gameObject);
     }

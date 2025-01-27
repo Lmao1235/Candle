@@ -76,10 +76,10 @@ public class Fireball : MonoBehaviour
         rb.velocity = direction * followSpeed;
     }
 
-    private void OnCollisionEnter2D(Collision2D other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
         Destroy(gameObject);
     }
-    
+
 
 }
