@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 3164422533822842844}
   m_Layer: 0
   m_Name: FireBullet
-  m_TagString: Untagged
+  m_TagString: PlayerAttack
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -100,6 +100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 20
+  angle: 45
   rb: {fileID: 9080347367485432916}
 --- !u!50 &9080347367485432916
 Rigidbody2D:

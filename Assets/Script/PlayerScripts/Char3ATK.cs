@@ -28,6 +28,17 @@ public class Char3ATK : MonoBehaviour
         }
     }
 
-    
+    private void OnTriggerEnter2D(Collider2D Char1Hit)
+    {
+        EnemyScript enemy = Char1Hit.GetComponent<EnemyScript>();
+        if (enemy != null)
+        {
+            Instantiate(Boom, BoomPos.position, Quaternion.identity);
+            Destroy(gameObject);
+        }
+        
+    }
+
+
 
 }

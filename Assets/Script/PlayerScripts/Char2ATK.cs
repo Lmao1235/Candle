@@ -24,7 +24,17 @@ public class Char2ATK : MonoBehaviour
 
         }
     }
+    private void OnTriggerEnter2D(Collider2D Char2Hit)
+    {
+        EnemyScript enemy = Char2Hit.GetComponent<EnemyScript>();
+        if (enemy != null)
+        {
+            enemy.TakeDamage(2);
+            Destroy(gameObject);
+        }
+        
+    }
 
-    
-   
+
+
 }

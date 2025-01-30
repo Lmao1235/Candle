@@ -20,8 +20,13 @@ public class Char1Attack : MonoBehaviour
         
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerEnter2D(Collider2D Char1Hit)
     {
+        EnemyScript enemy = Char1Hit.GetComponent<EnemyScript>();
+        if (enemy != null)
+        {
+            enemy.TakeDamage(1);
+        }
         Destroy(gameObject);
     }
 }
