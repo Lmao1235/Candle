@@ -12,7 +12,7 @@ public class Char3ATK : MonoBehaviour
     void Start()
     {
         rb.velocity = transform.right * speed;
-        rb.rotation = 45;
+        
     }
 
     // Update is called once per frame
@@ -36,7 +36,9 @@ public class Char3ATK : MonoBehaviour
             Instantiate(Boom, BoomPos.position, Quaternion.identity);
             Destroy(gameObject);
         }
-        
+        Instantiate(Boom, BoomPos.position, Quaternion.identity);
+        Destroy(gameObject);
+
     }
 
 

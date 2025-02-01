@@ -107,6 +107,10 @@ public class Fireball : MonoBehaviour
             }
             Destroy(gameObject);
         }
+        else if (FireballHit.transform.tag == "Player")
+        {
+           
+        }
         else
         {
             Destroy(gameObject);
