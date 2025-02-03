@@ -8,6 +8,7 @@ TagManager:
   - PlayerAttack
   - Fuel
   - Enemy
+  - EnemyDamage
   layers:
   - Default
   - TransparentFX

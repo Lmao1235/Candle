@@ -4,36 +4,52 @@ using UnityEngine;
 
 public class SwitchChar : MonoBehaviour
 {
-    [SerializeField] GameObject Char1;
-    [SerializeField] GameObject Char2;
-    [SerializeField] GameObject Char3;
+    public GameObject[] children; // Array to store child objects
+    private int currentIndex = 0;
+
     void Start()
     {
-        
+        ActivateChild(currentIndex);
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.Alpha1))
-        {
-            Char1.SetActive(true);
-            Char2.SetActive(false);
-            Char3.SetActive(false);
-        }
+        if (Input.GetKeyDown(KeyCode.Alpha1)) ActivateChild(0);
+        if (Input.GetKeyDown(KeyCode.Alpha2)) ActivateChild(1);
+        if (Input.GetKeyDown(KeyCode.Alpha3)) ActivateChild(2);
 
-        if (Input.GetKey(KeyCode.Alpha2))
+        // Auto-switch if the current child is destroyed
+        if (children[currentIndex] == null)
         {
-            Char1.SetActive(false);
-            Char2.SetActive(true);
-            Char3.SetActive(false);
+            SwitchToNextAvailable();
         }
+    }
 
-        if (Input.GetKey(KeyCode.Alpha3))
+    void ActivateChild(int index)
+    {
+        // Ensure the selected index is valid and exists
+        if (index < 0 || index >= children.Length || children[index] == null)
+            return;
+
+        currentIndex = index;
+
+        for (int i = 0; i < children.Length; i++)
         {
-            Char1.SetActive(false);
-            Char2.SetActive(false);
-            Char3.SetActive(true);
+            if (children[i] != null)
+                children[i].SetActive(i == currentIndex);
+        }
+    }
+
+    void SwitchToNextAvailable()
+    {
+        for (int i = 0; i < children.Length; i++)
+        {
+            int nextIndex = (currentIndex + 1 + i) % children.Length;
+            if (children[nextIndex] != null)
+            {
+                ActivateChild(nextIndex);
+                return;
+            }
         }
     }
 }
