@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -5942085581830398176}
   m_Layer: 0
   m_Name: Balls
-  m_TagString: PlayerAttack
+  m_TagString: Fireball
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -161,5 +161,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d6842fb26a46904d988863341abf7f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scaleChangeRate: {x: 0.05, y: 0.05, z: 0}
   launchSpeed: 10
   followSpeed: 7
+  FlamePoints: 1

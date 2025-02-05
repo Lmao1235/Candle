@@ -9,6 +9,9 @@ TagManager:
   - Fuel
   - Enemy
   - EnemyDamage
+  - Wall
+  - PlayerChild
+  - Fireball
   layers:
   - Default
   - TransparentFX

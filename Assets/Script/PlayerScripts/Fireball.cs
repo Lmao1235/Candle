@@ -109,14 +109,7 @@ public class Fireball : MonoBehaviour
             }
             Destroy(gameObject);
         }
-        else if (FireballHit.transform.tag == "Wall")
-        {
-            if (FlamePoints >= 3)
-            {
-                Destroy(FireballHit.gameObject);
-            }
-            Destroy(gameObject);
-        }
+        
         else if (FireballHit.transform.tag == "Player" || FireballHit.transform.tag == "PlayerChild")
         {
            
