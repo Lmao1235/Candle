@@ -9,6 +9,7 @@ public class Fireball : MonoBehaviour
     private bool isFollowing = false;
     private bool hasLaunched = false;
     private bool canFollow = true;
+    public Vector3 scaleChangeRate = new Vector3(0.03f, 0.03f, 0);
 
     public float launchSpeed = 10f; 
     public float followSpeed = 10f;
@@ -97,6 +98,7 @@ public class Fireball : MonoBehaviour
         {
             FlamePoints = 1 + FlamePoints;
             Debug.Log(FlamePoints);
+            transform.localScale += scaleChangeRate;
         }
         else if (FireballHit.transform.tag == "Enemy")
         {
@@ -107,7 +109,15 @@ public class Fireball : MonoBehaviour
             }
             Destroy(gameObject);
         }
-        else if (FireballHit.transform.tag == "Player")
+        else if (FireballHit.transform.tag == "Wall")
+        {
+            if (FlamePoints >= 3)
+            {
+                Destroy(FireballHit.gameObject);
+            }
+            Destroy(gameObject);
+        }
+        else if (FireballHit.transform.tag == "Player" || FireballHit.transform.tag == "PlayerChild")
         {
            
         }

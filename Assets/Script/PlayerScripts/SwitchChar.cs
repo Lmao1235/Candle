@@ -23,6 +23,11 @@ public class SwitchChar : MonoBehaviour
         {
             SwitchToNextAvailable();
         }
+
+        if (transform.childCount == 1)
+        {
+            Destroy(gameObject); // Destroy parent
+        }
     }
 
     void ActivateChild(int index)

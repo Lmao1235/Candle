@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.Timeline.TimelinePlaybackControls;
 
 public class EnemyShoot : MonoBehaviour
 {
@@ -24,11 +25,11 @@ public class EnemyShoot : MonoBehaviour
         float distance = Vector2.Distance(transform.position, Player.transform.position);
         Debug.Log(distance);
 
-        if (distance < 30)
+        if (distance < 0)
         {
             timer += Time.deltaTime;
 
-            if (timer > 1.5f)
+            if (timer > 1f)
             {
                 timer = 0;
                 shoot();
@@ -47,6 +48,8 @@ public class EnemyShoot : MonoBehaviour
     {
         Instantiate(Bullet, BulletPos.position, Quaternion.identity);
     }
+
+    
 
 
 }

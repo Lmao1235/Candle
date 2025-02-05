@@ -11,8 +11,9 @@ public class Char3ATK : MonoBehaviour
     [SerializeField] Transform BoomPos;
     void Start()
     {
-        rb.velocity = transform.right * speed;
-        
+        Vector2 direction = (transform.right + transform.up * 0.3f).normalized; // Modify 0.2f for more/less upward angle
+        rb.velocity = direction * speed;
+
     }
 
     // Update is called once per frame
