@@ -19,13 +19,5 @@ public class Explosion : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D BoomHit)
-    {
-        EnemyScript enemy = BoomHit.GetComponent<EnemyScript>();
-        if (enemy != null)
-        {
-            enemy.TakeDamage(5);
-        }
-
-    }
+    
 }

@@ -13,8 +13,7 @@ public class Turn : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (PauseMenu.IsPaused == false)
-        {
+        
             if (Input.GetKey(KeyCode.A))
             {
                 Quaternion newRotation = Quaternion.Euler(0, 180, 0);
@@ -29,7 +28,7 @@ public class Turn : MonoBehaviour
                 transform.rotation = newRotation;
 
             }
-        }
+        
        
     }
 }

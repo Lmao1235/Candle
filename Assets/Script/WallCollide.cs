@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class WallCollide : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public int WallDestroy;
     void Start()
     {
 
@@ -20,7 +20,7 @@ public class WallCollide : MonoBehaviour
     {
         Fireball projectile = wall.gameObject.GetComponent<Fireball>();
 
-        if (projectile != null && projectile.FlamePoints >= 3)
+        if (projectile != null && projectile.FlamePoints >= WallDestroy)
         {
             Destroy(gameObject);
         }
