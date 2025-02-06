@@ -9,6 +9,7 @@ public class LevelMenu : MonoBehaviour
     public Button[] buttons;
     public GameObject levelButtons;
 
+
     public void Awake()
     {
         ButtonsToArray();
@@ -25,7 +26,7 @@ public class LevelMenu : MonoBehaviour
 
     public void OpenLevel(int levelId)
     {
-        string levelName = "Level " + levelId;
+        string levelName = "Level" + levelId;
         SceneManager.LoadScene(levelName);
     }
 
