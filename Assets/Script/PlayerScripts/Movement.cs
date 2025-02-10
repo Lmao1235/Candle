@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Movement : MonoBehaviour
@@ -9,18 +10,26 @@ public class Movement : MonoBehaviour
     private float JumpForce = 300f;
     private bool isFacingRight = true;
 
+
     private bool grounded;
     private bool DoubleJump;
 
     private bool canDash = true;
     private bool isDashing;
-    private float dashingPower = 35f;
+    private float dashingPower = -64f;
     private float dashingTime = 0.1f;
     private float dashingCooldown = 1f;
 
+    private float timer;
     [SerializeField] private Rigidbody2D rb;
     
     [SerializeField] private LayerMask groundLayer;
+    private Animator anim;
+
+    public void Awake()
+    {
+        anim = GetComponent<Animator>();
+    }
 
     void Update()
     {
@@ -33,6 +42,8 @@ public class Movement : MonoBehaviour
         if (grounded && !Input.GetButton("Jump"))
         {
             DoubleJump = false;
+            anim.SetTrigger("jump");
+
         }
 
         if (Input.GetButtonDown("Jump"))
@@ -40,17 +51,34 @@ public class Movement : MonoBehaviour
             if (grounded || DoubleJump)
             {
                 rb.AddForce(new Vector2(rb.velocity.x, JumpForce));
-
+                anim.SetTrigger("jump");
                 DoubleJump = !DoubleJump;
+                
             }
 
         }
         if (Input.GetKeyDown(KeyCode.LeftShift) && canDash)
         {
             StartCoroutine(Dash());
+            anim.SetTrigger("dash");
         }
-        
+
+        timer += Time.deltaTime;
+        if (timer > 0)
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                anim.SetTrigger("attack");
+                timer = 0;
+            }
+
+        }
+
+
         Flip();
+
+        anim.SetBool("Move", horizontal != 0);
+        anim.SetBool("grounded", grounded);
     }
 
     private void FixedUpdate()
@@ -65,20 +93,22 @@ public class Movement : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.CompareTag("Ground"))
+        if (other.gameObject.transform.tag == "Ground")
         {
             grounded = true;
 
         }
+        
     }
     private void OnCollisionExit2D(Collision2D other)
     {
-        if (other.gameObject.CompareTag("Ground"))
+        if (other.gameObject.transform.tag == "Ground")
         {
             grounded = false;
 
         }
     }
+
 
     private void Flip()
     {

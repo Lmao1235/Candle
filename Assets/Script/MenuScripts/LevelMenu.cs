@@ -38,7 +38,7 @@ public class LevelMenu : MonoBehaviour
         Debug.Log("ResetLevelsSuccess");
     }
 
-    void UpdateUnlockedLevel(int levelId)
+    void UpdateUnlockLevel(int levelId)
     {
         int currentLevel = PlayerPrefs.GetInt("UnlockedLevel", 1);
 
@@ -68,5 +68,10 @@ public class LevelMenu : MonoBehaviour
         {
             buttons[i] = levelButtons.transform.GetChild(i).gameObject.GetComponent<Button>();
         }
+    }
+
+    public void CloseTab()
+    {
+        gameObject.SetActive(false);
     }
 }

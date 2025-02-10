@@ -9,6 +9,7 @@ public class RangeProjectile : EnemyDamage
     private float lifeTime;
     private Animator anim;
     private BoxCollider2D boxCollider;
+    public GameObject Player;
 
     private bool hit;
 
@@ -16,6 +17,12 @@ public class RangeProjectile : EnemyDamage
     {
         anim = GetComponent<Animator>();
         boxCollider = GetComponent<BoxCollider2D>();
+
+        Vector3 direction = Player.transform.position - transform.position;
+        
+
+        float rota = Mathf.Atan2(-direction.y, -direction.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.Euler(0, 0, rota);
     }
 
     public void ActivateProjectile()

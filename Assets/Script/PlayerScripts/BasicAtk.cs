@@ -6,17 +6,35 @@ public class BasicAtk : MonoBehaviour
 {
     public Transform Firepoint;
     public GameObject BulletPrefab;
+    private Animator anim;
+    
+    public float Cooldown;
+    private float timer;
 
+    private void Start()
+    {
+        
+    }
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        timer += Time.deltaTime;
+        if (timer > Cooldown)
         {
-            Shoot();
+            if (Input.GetMouseButtonDown(0))
+            {
+                Shoot();
+                
+                timer = 0;
+            }
+            
         }
+       
+        
     }
     void Shoot()
     {
         Instantiate(BulletPrefab, Firepoint.position, Firepoint.rotation);
+        
     }
 }

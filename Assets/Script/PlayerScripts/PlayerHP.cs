@@ -47,6 +47,8 @@ public class PlayerHP : MonoBehaviour
         gameObject.SetActive(false);
         RespawnCanva.SetActive(true);
         
+
+
     }
 
     public void Respawn()

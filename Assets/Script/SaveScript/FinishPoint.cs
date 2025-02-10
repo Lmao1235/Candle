@@ -6,21 +6,20 @@ using UnityEngine.SceneManagement;
 public class FinishPoint : MonoBehaviour
 {
     [SerializeField] bool goNextLevel;
-    [SerializeField] int LevelNum;
+    [SerializeField] string levelName;
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
-            Debug.Log("Entered");
-            Debug.Log("Entered");
             if (goNextLevel)//เอาออกได้หากไม่ใช้
-            {//เอาออกได้หากไม่ใช้
+            {
+                Debug.Log("Entered");
                 UnlockNewLevel();
-                SceneManager.LoadScene(LevelNum, LoadSceneMode.Single);//เอาออกได้หากไม่ใช้
+                SceneController.instance.NextLevel();
             }//เอาออกได้หากไม่ใช้
             else//เอาออกได้หากไม่ใช้
             {//เอาออกได้หากไม่ใช้
-                SceneManager.LoadScene(LevelNum, LoadSceneMode.Single);//เอาออกได้หากไม่ใช้
+                SceneController.instance.LoadScene(levelName);//เอาออกได้หากไม่ใช้
             }//เอาออกได้หากไม่ใช้
         }
     }
@@ -34,6 +33,7 @@ public class FinishPoint : MonoBehaviour
             PlayerPrefs.Save();
         }
     }
+
 }
 
 

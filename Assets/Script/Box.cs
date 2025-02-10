@@ -21,7 +21,7 @@ public class Box : MonoBehaviour
     {
         if (collision.CompareTag("PlayerAttack"))
         {
-            Instantiate(heart);
+            Instantiate(heart, HeartPos.position, Quaternion.identity);
             Destroy(gameObject);
         }
     }
