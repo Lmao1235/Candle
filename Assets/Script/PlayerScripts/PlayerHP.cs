@@ -15,12 +15,17 @@ public class PlayerHP : MonoBehaviour
     public GameObject Player;
     Vector2 checkpointPos;
     public int BTM;
+    private Animator anim;
+
+    public GameObject Dead;
+    [SerializeField] Transform DeadPos;
 
     public GameObject RespawnCanva;
 
     public void Start()
     {
         checkpointPos = transform.position;
+        anim = GetComponent<Animator>();
     }
     public void Update()
     {
@@ -33,6 +38,7 @@ public class PlayerHP : MonoBehaviour
         HP.text = "HP: " + Health.ToString(); ;
         if (Health <= 0)
         {
+            anim.SetTrigger("Death");
             Death();
         }
     }
@@ -44,11 +50,10 @@ public class PlayerHP : MonoBehaviour
 
     public void Death()
     {
+        
         gameObject.SetActive(false);
         RespawnCanva.SetActive(true);
-        
-
-
+        Instantiate(Dead, DeadPos.position, Quaternion.identity);
     }
 
     public void Respawn()
@@ -56,8 +61,10 @@ public class PlayerHP : MonoBehaviour
         transform.position = checkpointPos;
         gameObject.SetActive(true);
         Health = 10;
-        HP.text = "HP: " + Health.ToString(); 
+        HP.text = "HP: " + Health.ToString();
+        anim.ResetTrigger("Death");
         RespawnCanva.SetActive (false);
+        anim.Play("Idle");
     }
 
     private void OnTriggerEnter2D(Collider2D other)

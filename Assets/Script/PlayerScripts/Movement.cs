@@ -42,7 +42,7 @@ public class Movement : MonoBehaviour
         if (grounded && !Input.GetButton("Jump"))
         {
             DoubleJump = false;
-            anim.SetTrigger("jump");
+            
 
         }
 
@@ -67,6 +67,12 @@ public class Movement : MonoBehaviour
         if (timer > 0)
         {
             if (Input.GetMouseButtonDown(0))
+            {
+                anim.SetTrigger("attack");
+                timer = 0;
+            }
+
+            if (Input.GetMouseButtonDown(1))
             {
                 anim.SetTrigger("attack");
                 timer = 0;

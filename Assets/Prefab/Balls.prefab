@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 2574924487537948340}
   - component: {fileID: 4468028956257251823}
   - component: {fileID: 678900459914284993}
-  - component: {fileID: 7534402823957218374}
   - component: {fileID: -5942085581830398176}
+  - component: {fileID: 408638734639984409}
   m_Layer: 0
   m_Name: Balls
   m_TagString: Fireball
@@ -30,7 +30,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -2.2156, y: -0.7262, z: 0}
-  m_LocalScale: {x: 0.2057332, y: 0.2466782, z: 1}
+  m_LocalScale: {x: 2.0268683, y: 1.9605423, z: 6.623144}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 8e1a2ab9375fc6144857de377011615d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a8b9f12459f22f04a809c4067e7564b7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -114,7 +114,25 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 0
---- !u!58 &7534402823957218374
+--- !u!114 &-5942085581830398176
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8390263715241914639}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d6842fb26a46904d988863341abf7f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PartilePos: {fileID: 2574924487537948340}
+  PartilePrefab: {fileID: 4891720060516259937, guid: 69c3880f1d1871747b5a54e603f08bab, type: 3}
+  scaleChangeRate: {x: 0.5, y: 0.5, z: 0}
+  launchSpeed: 10
+  followSpeed: 7
+  FlamePoints: 1
+--- !u!58 &408638734639984409
 CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -148,20 +166,4 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 1.8
---- !u!114 &-5942085581830398176
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8390263715241914639}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0d6842fb26a46904d988863341abf7f0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  scaleChangeRate: {x: 0.05, y: 0.05, z: 0}
-  launchSpeed: 10
-  followSpeed: 7
-  FlamePoints: 1
+  m_Radius: 0.14
