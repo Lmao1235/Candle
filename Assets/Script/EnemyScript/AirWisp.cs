@@ -12,7 +12,7 @@ public class AirWisp : MonoBehaviour
     private float distance;
     void Start()
     {
-
+        Player = GameObject.FindGameObjectWithTag("Player");
     }
 
     // Update is called once per frame
@@ -25,7 +25,7 @@ public class AirWisp : MonoBehaviour
         {
             Vector2 direction = Player.transform.position - transform.position;
             direction.Normalize();
-            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg + 90;
+            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg ;
 
             transform.position = Vector2.MoveTowards(this.transform.position, Player.transform.position, speed * Time.deltaTime);
             transform.rotation = Quaternion.Euler(Vector3.forward * angle);

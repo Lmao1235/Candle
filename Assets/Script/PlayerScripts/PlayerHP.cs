@@ -4,13 +4,18 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UIElements;
 using static UnityEditor.Timeline.TimelinePlaybackControls;
+using UnityEngine.UI;
 
 public class PlayerHP : MonoBehaviour
 {
-    public int Health = 20;
+    public float Health;
     public TextMeshProUGUI HP;
+    private float _currentHealth;
+    [SerializeField] private Image _healthBarFill;
+    [SerializeField] private Transform _healthBarTransform;
+    private float _damageAmount;
+    private Camera _camera;
     public GameObject death;
     public GameObject Player;
     Vector2 checkpointPos;
@@ -22,25 +27,34 @@ public class PlayerHP : MonoBehaviour
 
     public GameObject RespawnCanva;
 
+    private void Awake()
+    {
+        _currentHealth = Health;
+        _camera = Camera.main;
+    }
+
     public void Start()
     {
         checkpointPos = transform.position;
         anim = GetComponent<Animator>();
     }
-    public void Update()
+    private void Update()
     {
-        
+        _healthBarTransform.rotation = _camera.transform.rotation;
     }
-    public void GotDamage(int damage)
+
+    public void GotDamage(float damage)
     {
-        Health -= damage;
-        Debug.Log(Health);
-        HP.text = "HP: " + Health.ToString(); ;
-        if (Health <= 0)
+        _currentHealth -= damage;
+        _currentHealth = Mathf.Clamp(_currentHealth, 0f, Health);
+        HP.text = "HP: " + _currentHealth.ToString(); ;
+        if (_currentHealth <= 0)
         {
+            _currentHealth = Health;
             anim.SetTrigger("Death");
             Death();
         }
+        _healthBarFill.fillAmount = _currentHealth / Health;
     }
 
     public void UpdateCheckpoint(Vector2 pos)
@@ -50,7 +64,7 @@ public class PlayerHP : MonoBehaviour
 
     public void Death()
     {
-        
+
         gameObject.SetActive(false);
         RespawnCanva.SetActive(true);
         Instantiate(Dead, DeadPos.position, Quaternion.identity);
@@ -61,9 +75,10 @@ public class PlayerHP : MonoBehaviour
         transform.position = checkpointPos;
         gameObject.SetActive(true);
         Health = 10;
+        _currentHealth = Health;
         HP.text = "HP: " + Health.ToString();
-        anim.ResetTrigger("Death");
-        RespawnCanva.SetActive (false);
+        _healthBarFill.fillAmount = 1f;
+        RespawnCanva.SetActive(false);
         anim.Play("Idle");
     }
 
@@ -71,22 +86,28 @@ public class PlayerHP : MonoBehaviour
     {
         if (other.transform.tag == "Heal")
         {
-            Health = Health + 3;
-            Destroy(other.gameObject);
+            Health = _currentHealth + 2;
             
+            Destroy(other.gameObject);
+            Debug.Log(Health);
             if (Health > 10)
             {
                 Health = 10;
             }
-
-            HP.text = "HP: " + Health.ToString(); ;
-
+            _currentHealth = Health;
+            HP.text = "HP: " + Health.ToString();
+            GotDamage(_damageAmount);
+            _healthBarFill.fillAmount = _currentHealth * Health;
         }
     }
+
+    
 
     public void BackToMenu()
     {
         RespawnCanva.SetActive(false);
         SceneManager.LoadScene(BTM, LoadSceneMode.Single);
     }
+
+    
 }

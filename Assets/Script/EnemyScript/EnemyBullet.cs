@@ -5,19 +5,19 @@ using UnityEngine;
 public class EnemyBullet : MonoBehaviour
 {
     private GameObject Player;
-    private Rigidbody2D rb;
+    public Rigidbody2D rb;
     [SerializeField] private float force;
     
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
+        
         Player = GameObject.FindGameObjectWithTag("Player");
 
         Vector3 direction = Player.transform.position - transform.position;
         rb.velocity = new Vector2(direction.x, direction.y).normalized * force;
 
         float rota = Mathf.Atan2(-direction.y, -direction.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(0, 0, rota);
+        transform.rotation = Quaternion.Euler(0, 0, rota + 180);
     }
 
     // Update is called once per frame
@@ -32,7 +32,17 @@ public class EnemyBullet : MonoBehaviour
         if (player != null)
         {
             player.GotDamage(1);
+            Destroy(gameObject);
         }
-        Destroy(gameObject);
+        else if (BulletHit.transform.tag == "PlayerAttack" || BulletHit.transform.tag == "Fireball")
+        {
+            Destroy(BulletHit.gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+
+
     }
 }

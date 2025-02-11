@@ -40,8 +40,7 @@ public class RangeProjectile : EnemyDamage
             return;
         }
 
-        float movementSpeed = speed * Time.deltaTime;
-        transform.Translate(movementSpeed, 0, 0);
+        
 
         lifeTime += Time.deltaTime;
         if (lifeTime > resetTime)

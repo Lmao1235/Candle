@@ -95,6 +95,7 @@ public class Movement : MonoBehaviour
         }
 
         rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
+        
     }
 
     private void OnCollisionEnter2D(Collision2D other)
@@ -102,7 +103,7 @@ public class Movement : MonoBehaviour
         if (other.gameObject.transform.tag == "Ground")
         {
             grounded = true;
-
+            Debug.Log(grounded);
         }
         
     }
@@ -111,7 +112,7 @@ public class Movement : MonoBehaviour
         if (other.gameObject.transform.tag == "Ground")
         {
             grounded = false;
-
+            Debug.Log(grounded);
         }
     }
 
