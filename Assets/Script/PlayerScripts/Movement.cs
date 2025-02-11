@@ -97,6 +97,14 @@ public class Movement : MonoBehaviour
         rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
         
     }
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Ground"))
+        {
+            grounded = true;
+            Debug.Log("Grounded: " + grounded);
+        }
+    }
 
     private void OnCollisionStay2D(Collision2D other)
     {
@@ -104,8 +112,20 @@ public class Movement : MonoBehaviour
         {
             grounded = true;
         }
+        else
+        {
+            grounded = false;
+        }
     }
 
+    private void OnCollisionExit2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Ground"))
+        {
+            grounded = false;
+            Debug.Log("Grounded: " + grounded);
+        }
+    }
 
     private void Flip()
     {
