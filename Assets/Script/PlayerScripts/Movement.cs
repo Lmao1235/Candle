@@ -98,21 +98,11 @@ public class Movement : MonoBehaviour
         
     }
 
-    private void OnCollisionEnter2D(Collision2D other)
+    private void OnCollisionStay2D(Collision2D other)
     {
-        if (other.gameObject.transform.tag == "Ground")
+        if (other.gameObject.CompareTag("Ground"))
         {
             grounded = true;
-            Debug.Log(grounded);
-        }
-        
-    }
-    private void OnCollisionExit2D(Collision2D other)
-    {
-        if (other.gameObject.transform.tag == "Ground")
-        {
-            grounded = false;
-            Debug.Log(grounded);
         }
     }
 

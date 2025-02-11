@@ -146,7 +146,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Player: {fileID: 0}
   speed: 5
-  DB: 5
+  DB: 100
 --- !u!95 &2574047616465412505
 Animator:
   serializedVersion: 5
